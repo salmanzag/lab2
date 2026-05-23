@@ -4,11 +4,11 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import co.edu.javeriana.as.personapp.common.exceptions.InvalidOptionException;
-import co.edu.javeriana.as.personapp.terminal.adapter.PersonaInputAdapterCli;
+import co.edu.javeriana.as.personapp.terminal.adapter.TelefonoInputAdapterCli;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class PersonaMenu {
+public class TelefonoMenu {
 
 	private static final int OPCION_REGRESAR_MODULOS = 0;
 	private static final int PERSISTENCIA_MARIADB = 1;
@@ -21,7 +21,7 @@ public class PersonaMenu {
 	private static final int OPCION_EDITAR = 4;
 	private static final int OPCION_ELIMINAR = 5;
 
-	public void iniciarMenu(PersonaInputAdapterCli personaInputAdapterCli, Scanner keyboard) {
+	public void iniciarMenu(TelefonoInputAdapterCli telefonoInputAdapterCli, Scanner keyboard) {
 		boolean isValid = false;
 		do {
 			try {
@@ -32,12 +32,12 @@ public class PersonaMenu {
 					isValid = true;
 					break;
 				case PERSISTENCIA_MARIADB:
-					personaInputAdapterCli.setPersonOutputPortInjection("MARIA");
-					menuOpciones(personaInputAdapterCli, keyboard);
+					telefonoInputAdapterCli.setPhoneOutputPortInjection("MARIA");
+					menuOpciones(telefonoInputAdapterCli, keyboard);
 					break;
 				case PERSISTENCIA_MONGODB:
-					personaInputAdapterCli.setPersonOutputPortInjection("MONGO");
-					menuOpciones(personaInputAdapterCli, keyboard);
+					telefonoInputAdapterCli.setPhoneOutputPortInjection("MONGO");
+					menuOpciones(telefonoInputAdapterCli, keyboard);
 					break;
 				default:
 					log.warn("La opción elegida no es válida.");
@@ -48,7 +48,7 @@ public class PersonaMenu {
 		} while (!isValid);
 	}
 
-	private void menuOpciones(PersonaInputAdapterCli personaInputAdapterCli, Scanner keyboard) {
+	private void menuOpciones(TelefonoInputAdapterCli telefonoInputAdapterCli, Scanner keyboard) {
 		boolean isValid = false;
 		do {
 			try {
@@ -59,19 +59,19 @@ public class PersonaMenu {
 					isValid = true;
 					break;
 				case OPCION_VER_TODO:
-					personaInputAdapterCli.historial();
+					telefonoInputAdapterCli.historial();
 					break;
 				case OPCION_CREAR:
-					personaInputAdapterCli.crear(keyboard);
+					telefonoInputAdapterCli.crear(keyboard);
 					break;
 				case OPCION_BUSCAR:
-					personaInputAdapterCli.buscar(keyboard);
+					telefonoInputAdapterCli.buscar(keyboard);
 					break;
 				case OPCION_EDITAR:
-					personaInputAdapterCli.editar(keyboard);
+					telefonoInputAdapterCli.editar(keyboard);
 					break;
 				case OPCION_ELIMINAR:
-					personaInputAdapterCli.eliminar(keyboard);
+					telefonoInputAdapterCli.eliminar(keyboard);
 					break;
 				default:
 					log.warn("La opción elegida no es válida.");
@@ -84,11 +84,11 @@ public class PersonaMenu {
 
 	private void mostrarMenuOpciones() {
 		System.out.println("----------------------");
-		System.out.println(OPCION_VER_TODO + " para ver todas las personas");
-		System.out.println(OPCION_CREAR + " para crear una persona");
-		System.out.println(OPCION_BUSCAR + " para buscar una persona");
-		System.out.println(OPCION_EDITAR + " para editar una persona");
-		System.out.println(OPCION_ELIMINAR + " para eliminar una persona");
+		System.out.println(OPCION_VER_TODO + " para ver todos los teléfonos");
+		System.out.println(OPCION_CREAR + " para crear un teléfono");
+		System.out.println(OPCION_BUSCAR + " para buscar un teléfono");
+		System.out.println(OPCION_EDITAR + " para editar un teléfono");
+		System.out.println(OPCION_ELIMINAR + " para eliminar un teléfono");
 		System.out.println(OPCION_REGRESAR_MOTOR_PERSISTENCIA + " para regresar");
 	}
 
